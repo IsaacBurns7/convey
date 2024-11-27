@@ -1,0 +1,12 @@
+notes: 
++ WebGL can replace canvas potentially here, and is far more powerful, 
+yet more cumbersome and difficult to use. Use if doing 3d or want speed
+- extra notes on WebGL vs Canvas
+    merging the drawing API code and the rest (integration): similar
+    ease of use:
+    (with library) canvas = webGL
+    (from scratch) webGL << canvas
+    speed: webGL > canvas
+    capabilities: webGL > canvas
+    cost: webGL is much more expensive
+    platform: very similar
