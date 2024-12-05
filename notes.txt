@@ -10,3 +10,26 @@ yet more cumbersome and difficult to use. Use if doing 3d or want speed
     capabilities: webGL > canvas
     cost: webGL is much more expensive
     platform: very similar
+
+
+potential way to architect the "controls" class - once game gets real big!
+    interface Mode {
+        handleInput(): void;
+    }
+    class BuildMode implements Mode {
+        handleInput() {
+            console.log("Building...");
+        }
+    }
+
+    class AttackMode implements Mode {
+        handleInput() {
+            console.log("Attacking...");
+        }
+    }
+
+    class ShieldingMode implements Mode {
+        handleInput() {
+            console.log("Shielding...");
+        }
+    }

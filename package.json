@@ -1,16 +1,18 @@
 {
   "name": "convey",
   "version": "1.0.0",
-  "main": "coal.js",
+  "main": "./dist/index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo no build yet!",
+    "start": "live-server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.21.1",
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
