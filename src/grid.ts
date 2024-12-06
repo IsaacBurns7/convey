@@ -43,7 +43,8 @@ export class Grid{
     initialize(ctx: CanvasRenderingContext2D){
         for(let i = 0;i<this.rows;i++){
             for(let j = 0;j<this.cols;j++){
-                this.map[i][j] = new ConveryerBeltTile(i, j, this.tileWidth, this.tileHeight, 1, this.output_directions[Math.floor(Math.random()*4) % 4]);
+                let random_dir = 1 + (Math.floor(Math.random() * 4)) % 4;
+                this.map[i][j] = new ConveryerBeltTile(i, j, this.tileWidth, this.tileHeight, 1, random_dir, random_dir);
             }
         }
     }
@@ -75,5 +76,8 @@ export class Grid{
             throw new Error("Tile height must be a positive number.");
         }
         this.tileHeight = value;
+    }
+    offset(row: number, col: number, offset:number){
+        
     }
 }

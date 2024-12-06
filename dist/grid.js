@@ -36,13 +36,35 @@ export class Grid {
     initialize(ctx) {
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
-                this.map[i][j] = new ConveryerBeltTile(1, this.output_directions[Math.floor(Math.random() * 4) % 4], i, j, this.tileWidth, this.tileHeight);
+                let random_dir = 1 + (Math.floor(Math.random() * 4)) % 4;
+                this.map[i][j] = new ConveryerBeltTile(i, j, this.tileWidth, this.tileHeight, 1, random_dir, random_dir);
             }
         }
     }
-    getTileAt(x, y) {
+    getRowCol(x, y) {
         const row = Math.floor(y / this.tileHeight);
         const col = Math.floor(x / this.tileWidth);
         return { row, col };
+    }
+    getTileWidth() {
+        return this.tileWidth;
+    }
+    // Setter for tileWidth
+    setTileWidth(value) {
+        if (value <= 0) {
+            throw new Error("Tile width must be a positive number.");
+        }
+        this.tileWidth = value;
+    }
+    // Getter for tileHeight
+    getTileHeight() {
+        return this.tileHeight;
+    }
+    // Setter for tileHeight
+    setTileHeight(value) {
+        if (value <= 0) {
+            throw new Error("Tile height must be a positive number.");
+        }
+        this.tileHeight = value;
     }
 }

@@ -1,6 +1,6 @@
 import { ConveryerBeltTile } from "./conveyerbelt.ts";
 import { Grid } from "./grid.ts";
-import { UndefinedTile } from "./tiles";
+import { UndefinedTile } from "./tiles.ts";
 
 /*broad concerns:
     - deal with player selecting menu, being in build mode, attack mode, ? etc these kinds of things
@@ -45,8 +45,7 @@ export class Controls{
                     this.mode = "player_movement";
                 case "1":
                     if(this.mode == "build"){
-                        let output_direction = [0,1];
-                        this.proposed = new ConveryerBeltTile(0, 0, this.grid.getTileWidth(), this.grid.getTileHeight(), 1, output_direction);
+                        this.proposed = new ConveryerBeltTile(0, 0, this.grid.getTileWidth(), this.grid.getTileHeight(), 1, 1, 1);
                     }
 
             }

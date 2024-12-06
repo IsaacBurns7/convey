@@ -1,5 +1,5 @@
-export function rotate(points: number[][], radians: number) : number[][]{
-    let newPoints: number[][] = [];
+export function rotate(points, radians) {
+    let newPoints = [];
     const cosTheta = Math.cos(radians);
     const sinTheta = Math.sin(radians);
     points.forEach((point) => {

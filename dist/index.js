@@ -22,14 +22,15 @@ pauseButton.addEventListener("click", () => {
 });
 let ticks = 0;
 let grid = new Grid(w, h, 30, 30);
-//grid.initialize(ctx);
-let controls = new Controls(canvas, (x, y) => { return grid.getTileAt(x, y); });
+grid.initialize(ctx);
+let controls = new Controls(canvas, ctx, grid);
 function gameLoop() {
     if (paused) {
         requestAnimationFrame(gameLoop);
         return;
     }
     grid.drawGrid(ctx);
+    return;
     requestAnimationFrame(gameLoop);
 }
 gameLoop();
