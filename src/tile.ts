@@ -15,8 +15,10 @@ export abstract class Tile{
     }
     // abstract draw(): void;
     setRowCol(newRow: number, newCol: number){
-        this.x = newRow*this.width;
-        this.y = newCol*this.height;
+        this.y = newRow*this.height;
+        this.x = newCol*this.width;
+        this.row = newRow;
+        this.col = newCol;
     }
 }
 
@@ -30,13 +32,3 @@ export class UndefinedTile extends Tile{
     }; 
 }
 
-export class StoneTile{
-    draw(): void{
-
-    }
-}
-export class CoalTile{
-    draw():void{
-
-    }
-}

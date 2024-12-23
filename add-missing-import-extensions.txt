@@ -1,0 +1,8 @@
+# Find
+import\s(([^;]|\n)*)\sfrom\s(['"])(\.{1,2}\/.*)(?<!\.js)(?<!\.(css|pdf|png|jpg|jsx|mjs|mp3|mp4|svg|ttf))(?<!\.(avif|json|webm|webp|woff))(?<!\.woff2)(['"]);
+
+# Replace with
+import $1 from $3$4.js$7;
+
+#credit:
+#https://gist.github.com/wojtekmaj/41b0724cbb81b8ab740d5ee403dbc2ec

@@ -21,7 +21,7 @@ pauseButton.addEventListener("click", () => {
     paused = !paused;
 });
 let ticks = 0;
-let grid = new Grid(w, h, 30, 30);
+let grid = new Grid(w, h, 100, 100);
 grid.initialize(ctx);
 let controls = new Controls(canvas, ctx, grid);
 function gameLoop() {
@@ -29,8 +29,8 @@ function gameLoop() {
         requestAnimationFrame(gameLoop);
         return;
     }
-    grid.drawGrid(ctx);
-    return;
+    grid.update(ctx);
+    controls.getProposed().draw(ctx, 0.5, "purple", "purple", "purple");
     requestAnimationFrame(gameLoop);
 }
 gameLoop();

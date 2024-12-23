@@ -1,5 +1,6 @@
-import { UndefinedTile } from "./tiles.js";
+import { UndefinedTile } from "./tile.js";
 import { ConveryerBeltTile } from "./conveyerbelt.js";
+import { StoneTile, CoalTile } from "./resourceTile.js";
 //glorified 2d array, not sure if this is needed
 export class Grid {
     width;
@@ -22,7 +23,7 @@ export class Grid {
         this.output_directions = [[1, 0], [-1, 0], [0, 1], [0, -1]];
     }
     //use # to make private
-    drawGrid(ctx) {
+    draw(ctx) {
         // const temp = ctx.fillStyle;
         // ctx.fillStyle = "black";
         // ctx.lineWidth = 3;
@@ -33,13 +34,16 @@ export class Grid {
         }
         // ctx.fillStyle = temp;
     }
-    initialize(ctx) {
+    async initialize(ctx) {
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
-                let random_dir = 1 + (Math.floor(Math.random() * 4)) % 4;
-                this.map[i][j] = new ConveryerBeltTile(i, j, this.tileWidth, this.tileHeight, 1, random_dir, random_dir);
+                let random_dir = 1;
+                let random_dir2 = 2;
+                this.map[i][j] = new ConveryerBeltTile(i, j, this.tileWidth, this.tileHeight, 1, random_dir, random_dir2);
             }
         }
+        this.map[0][0] = new CoalTile(0, 0, this.tileWidth, this.tileHeight);
+        this.map[0][1] = new StoneTile(0, 1, this.tileWidth, this.tileHeight);
     }
     getRowCol(x, y) {
         const row = Math.floor(y / this.tileHeight);
@@ -66,5 +70,31 @@ export class Grid {
             throw new Error("Tile height must be a positive number.");
         }
         this.tileHeight = value;
+    }
+    updateTile(row, col, tile) {
+        this.map[col][row] = tile;
+    }
+    drawProposed() {
+    }
+    updateConveyerBelt(row, col) {
+        if (!(this.map[row][col] instanceof ConveryerBeltTile)) {
+            console.error("Can only offset conveyer belts.");
+            return;
+        }
+        let offset = this.map[row][col].getOffset();
+        this.map[row][col].setOffset(offset + this.map[row][col].getSpeed());
+    }
+    async #updateTiles() {
+        this.map.forEach((row_tiles, row) => {
+            row_tiles.forEach((tile, col) => {
+                if (tile instanceof ConveryerBeltTile) {
+                    this.updateConveyerBelt(row, col);
+                }
+            });
+        });
+    }
+    update(ctx) {
+        this.#updateTiles();
+        this.draw(ctx);
     }
 }
