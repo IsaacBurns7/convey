@@ -20,6 +20,18 @@ export class Tile {
         this.row = newRow;
         this.col = newCol;
     }
+    getRow() {
+        return this.row;
+    }
+    getCol() {
+        return this.col;
+    }
+    getWidth() {
+        return this.width;
+    }
+    getHeight() {
+        return this.height;
+    }
 }
 export class UndefinedTile extends Tile {
     constructor(row, col, width, height) {

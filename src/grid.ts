@@ -2,7 +2,7 @@ import { Tile, UndefinedTile } from './tile.ts';
 import { ConveryerBeltTile } from './conveyerbelt.ts';
 import { StoneTile, CoalTile } from './resourceTile.ts';
 
-type GridItem = ConveryerBeltTile | UndefinedTile | CoalTile | StoneTile; //horrifying to scale
+export type GridItem = ConveryerBeltTile | UndefinedTile | CoalTile | StoneTile; //horrifying to scale
 //glorified 2d array, not sure if this is needed
 export class Grid{
     private width: number;
